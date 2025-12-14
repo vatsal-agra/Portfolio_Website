@@ -13,6 +13,10 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        sans: ['Space Grotesk', 'sans-serif'],
+        mono: ['JetBrains Mono', 'monospace'],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -47,15 +51,10 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        sidebar: {
-          DEFAULT: "hsl(var(--sidebar-background))",
-          foreground: "hsl(var(--sidebar-foreground))",
-          primary: "hsl(var(--sidebar-primary))",
-          "primary-foreground": "hsl(var(--sidebar-primary-foreground))",
-          accent: "hsl(var(--sidebar-accent))",
-          "accent-foreground": "hsl(var(--sidebar-accent-foreground))",
-          border: "hsl(var(--sidebar-border))",
-          ring: "hsl(var(--sidebar-ring))",
+        neon: {
+          cyan: "hsl(var(--neon-cyan))",
+          purple: "hsl(var(--neon-purple))",
+          orange: "hsl(var(--neon-orange))",
         },
       },
       borderRadius: {
@@ -65,25 +64,73 @@ export default {
       },
       keyframes: {
         "accordion-down": {
-          from: {
-            height: "0",
-          },
-          to: {
-            height: "var(--radix-accordion-content-height)",
-          },
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
         },
         "accordion-up": {
-          from: {
-            height: "var(--radix-accordion-content-height)",
-          },
-          to: {
-            height: "0",
-          },
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
+        },
+        float: {
+          "0%, 100%": { transform: "translateY(0px)" },
+          "50%": { transform: "translateY(-20px)" },
+        },
+        "float-slow": {
+          "0%, 100%": { transform: "translateY(0px) rotate(0deg)" },
+          "50%": { transform: "translateY(-10px) rotate(5deg)" },
+        },
+        "pulse-glow": {
+          "0%, 100%": { opacity: "1", transform: "scale(1)" },
+          "50%": { opacity: "0.8", transform: "scale(1.05)" },
+        },
+        gradient: {
+          "0%": { backgroundPosition: "0% 50%" },
+          "50%": { backgroundPosition: "100% 50%" },
+          "100%": { backgroundPosition: "0% 50%" },
+        },
+        "slide-up": {
+          "0%": { opacity: "0", transform: "translateY(30px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        "slide-in-right": {
+          "0%": { opacity: "0", transform: "translateX(30px)" },
+          "100%": { opacity: "1", transform: "translateX(0)" },
+        },
+        "fade-in": {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
+        },
+        "scale-in": {
+          "0%": { opacity: "0", transform: "scale(0.9)" },
+          "100%": { opacity: "1", transform: "scale(1)" },
+        },
+        shimmer: {
+          "0%": { backgroundPosition: "-200% 0" },
+          "100%": { backgroundPosition: "200% 0" },
+        },
+        orbit: {
+          "0%": { transform: "rotate(0deg) translateX(100px) rotate(0deg)" },
+          "100%": { transform: "rotate(360deg) translateX(100px) rotate(-360deg)" },
+        },
+        "typing-cursor": {
+          "0%, 100%": { opacity: "1" },
+          "50%": { opacity: "0" },
         },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        float: "float 6s ease-in-out infinite",
+        "float-slow": "float-slow 8s ease-in-out infinite",
+        "pulse-glow": "pulse-glow 2s ease-in-out infinite",
+        gradient: "gradient 8s ease infinite",
+        "slide-up": "slide-up 0.6s ease-out forwards",
+        "slide-in-right": "slide-in-right 0.6s ease-out forwards",
+        "fade-in": "fade-in 0.5s ease-out forwards",
+        "scale-in": "scale-in 0.5s ease-out forwards",
+        shimmer: "shimmer 2s linear infinite",
+        orbit: "orbit 20s linear infinite",
+        "typing-cursor": "typing-cursor 1s step-end infinite",
       },
     },
   },
