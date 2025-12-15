@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { ArrowDown, Github, Linkedin, Mail } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Github, Linkedin, Mail } from 'lucide-react';
 
 const roles = [
   'AI/ML Enthusiast',
@@ -38,15 +39,8 @@ const HeroSection = () => {
     return () => clearTimeout(timeout);
   }, [displayText, isDeleting, currentRole]);
 
-  const scrollToAbout = () => {
-    document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
-  };
-
   return (
-    <section
-      id="home"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
-    >
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Gradient Orb */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-gradient-to-br from-primary/20 via-secondary/10 to-transparent blur-3xl animate-pulse-glow pointer-events-none" />
 
@@ -104,38 +98,23 @@ const HeroSection = () => {
             </a>
           </div>
 
-          {/* CTA Buttons */}
+          {/* CTA Buttons - Now route to separate pages */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in opacity-0" style={{ animationDelay: '1.2s', animationFillMode: 'forwards' }}>
-            <button
-              onClick={scrollToAbout}
+            <Link
+              to="/projects"
               className="px-8 py-3 bg-primary text-primary-foreground font-medium rounded-full hover:shadow-lg hover:shadow-primary/25 transition-all duration-300 hover:scale-105"
             >
               Explore My Work
-            </button>
-            <a
-              href="#contact"
-              onClick={(e) => {
-                e.preventDefault();
-                document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-              }}
+            </Link>
+            <Link
+              to="/contact"
               className="px-8 py-3 glass font-medium rounded-full hover:bg-muted/50 transition-all duration-300 border border-border/50"
             >
               Get In Touch
-            </a>
+            </Link>
           </div>
         </div>
       </div>
-
-      {/* Scroll Indicator */}
-      <button
-        onClick={scrollToAbout}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-float"
-      >
-        <div className="flex flex-col items-center gap-2 text-muted-foreground hover:text-primary transition-colors">
-          <span className="text-xs font-mono">Scroll</span>
-          <ArrowDown className="w-4 h-4" />
-        </div>
-      </button>
     </section>
   );
 };
