@@ -40,7 +40,7 @@ const HeroSection = () => {
   }, [displayText, isDeleting, currentRole]);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="h-full flex items-center justify-center">
       {/* Gradient Orb */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-gradient-to-br from-primary/20 via-secondary/10 to-transparent blur-3xl animate-pulse-glow pointer-events-none" />
 
@@ -98,7 +98,7 @@ const HeroSection = () => {
             </a>
           </div>
 
-          {/* CTA Buttons - Now route to separate pages */}
+          {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in opacity-0" style={{ animationDelay: '1.2s', animationFillMode: 'forwards' }}>
             <Link
               to="/projects"
