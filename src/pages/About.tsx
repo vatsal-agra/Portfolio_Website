@@ -1,17 +1,17 @@
 import NeuralBackground from '@/components/NeuralBackground';
 import Navbar from '@/components/Navbar';
-import HeroSection from '@/components/HeroSection';
+import AboutSection from '@/components/AboutSection';
 
-const Index = () => {
+const About = () => {
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
       <NeuralBackground />
       <Navbar />
-      <main className="relative z-10">
-        <HeroSection />
+      <main className="relative z-10 pt-24">
+        <AboutSection />
       </main>
     </div>
   );
 };
 
-export default Index;
+export default About;

@@ -1,45 +1,34 @@
 import { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
+import NavLink from './NavLink';
 
 const navItems = [
-  { name: 'Home', href: '#home' },
-  { name: 'About', href: '#about' },
-  { name: 'Skills', href: '#skills' },
-  { name: 'Projects', href: '#projects' },
-  { name: 'Contact', href: '#contact' },
+  { name: 'Home', path: '/' },
+  { name: 'About', path: '/about' },
+  { name: 'Skills', path: '/skills' },
+  { name: 'Projects', path: '/projects' },
+  { name: 'Contact', path: '/contact' },
 ];
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('home');
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
-
-      // Update active section based on scroll position
-      const sections = navItems.map(item => item.href.slice(1));
-      for (const section of sections.reverse()) {
-        const element = document.getElementById(section);
-        if (element && window.scrollY >= element.offsetTop - 200) {
-          setActiveSection(section);
-          break;
-        }
-      }
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+  // Close mobile menu on route change
+  useEffect(() => {
     setIsMobileMenuOpen(false);
-  };
+  }, [location.pathname]);
 
   return (
     <nav
@@ -50,38 +39,19 @@ const Navbar = () => {
       }`}
     >
       <div className="container mx-auto px-6 flex items-center justify-between">
-        <a
-          href="#home"
-          onClick={(e) => {
-            e.preventDefault();
-            scrollToSection('#home');
-          }}
+        <Link
+          to="/"
           className="text-xl font-bold text-gradient"
         >
           VA
-        </a>
+        </Link>
 
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-8">
           {navItems.map((item) => (
-            <a
-              key={item.name}
-              href={item.href}
-              onClick={(e) => {
-                e.preventDefault();
-                scrollToSection(item.href);
-              }}
-              className={`relative text-sm font-medium transition-colors duration-300 ${
-                activeSection === item.href.slice(1)
-                  ? 'text-primary'
-                  : 'text-muted-foreground hover:text-foreground'
-              }`}
-            >
+            <NavLink key={item.name} to={item.path}>
               {item.name}
-              {activeSection === item.href.slice(1) && (
-                <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary rounded-full" />
-              )}
-            </a>
+            </NavLink>
           ))}
         </div>
 
@@ -98,22 +68,14 @@ const Navbar = () => {
       {isMobileMenuOpen && (
         <div className="md:hidden glass mt-2 mx-4 rounded-lg p-4 animate-slide-up">
           {navItems.map((item, index) => (
-            <a
+            <NavLink
               key={item.name}
-              href={item.href}
-              onClick={(e) => {
-                e.preventDefault();
-                scrollToSection(item.href);
-              }}
-              className={`block py-3 text-center font-medium transition-colors ${
-                activeSection === item.href.slice(1)
-                  ? 'text-primary'
-                  : 'text-muted-foreground'
-              }`}
-              style={{ animationDelay: `${index * 50}ms` }}
+              to={item.path}
+              className="block py-3 text-center"
+              onClick={() => setIsMobileMenuOpen(false)}
             >
               {item.name}
-            </a>
+            </NavLink>
           ))}
         </div>
       )}
