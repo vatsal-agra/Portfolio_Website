@@ -10,10 +10,10 @@ const roles = [
 ];
 
 const floatingIcons = [
-  { icon: User, label: 'About', to: '/about', position: 'top-[15%] left-[10%]', delay: '0s' },
-  { icon: Code, label: 'Skills', to: '/skills', position: 'top-[20%] right-[12%]', delay: '0.5s' },
-  { icon: FolderOpen, label: 'Projects', to: '/projects', position: 'bottom-[25%] left-[8%]', delay: '1s' },
-  { icon: Send, label: 'Contact', to: '/contact', position: 'bottom-[20%] right-[10%]', delay: '1.5s' },
+  { icon: User, label: 'About', to: '/about', position: 'top-[18%] left-[12%]', animation: 'animate-float-orbit-1' },
+  { icon: Code, label: 'Skills', to: '/skills', position: 'top-[22%] right-[14%]', animation: 'animate-float-orbit-2' },
+  { icon: FolderOpen, label: 'Projects', to: '/projects', position: 'bottom-[28%] left-[10%]', animation: 'animate-float-orbit-3' },
+  { icon: Send, label: 'Contact', to: '/contact', position: 'bottom-[22%] right-[12%]', animation: 'animate-float-orbit-4' },
 ];
 
 const HeroSection = () => {
@@ -52,16 +52,15 @@ const HeroSection = () => {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-gradient-to-br from-primary/20 via-secondary/10 to-transparent blur-3xl animate-pulse-glow pointer-events-none" />
 
       {/* Floating Navigation Icons */}
-      {floatingIcons.map(({ icon: Icon, label, to, position, delay }) => (
+      {floatingIcons.map(({ icon: Icon, label, to, position, animation }) => (
         <Link
           key={label}
           to={to}
           className={`absolute ${position} group z-20`}
-          style={{ animationDelay: delay }}
         >
-          <div className="relative animate-float" style={{ animationDelay: delay }}>
-            <div className="p-4 md:p-5 rounded-2xl glass border border-primary/30 hover:border-primary hover:bg-primary/20 transition-all duration-500 hover:scale-110 hover:shadow-lg hover:shadow-primary/25 cursor-pointer">
-              <Icon className="w-6 h-6 md:w-8 md:h-8 text-primary transition-transform duration-300 group-hover:scale-110" />
+          <div className={`relative ${animation}`}>
+            <div className="p-4 md:p-5 rounded-2xl glass border border-primary/30 hover:border-primary hover:bg-primary/20 transition-all duration-500 hover:scale-125 hover:shadow-lg hover:shadow-primary/25 cursor-pointer">
+              <Icon className="w-6 h-6 md:w-8 md:h-8 text-primary transition-transform duration-300 group-hover:rotate-12" />
             </div>
             <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-xs md:text-sm font-medium text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
               {label}
