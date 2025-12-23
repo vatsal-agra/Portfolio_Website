@@ -4,10 +4,10 @@ import ProjectsSection from '@/components/ProjectsSection';
 
 const Projects = () => {
   return (
-    <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
+    <div className="min-h-screen bg-background text-foreground">
       <NeuralBackground />
       <Navbar />
-      <main className="relative z-10 h-full">
+      <main className="relative z-10">
         <ProjectsSection />
       </main>
     </div>
