@@ -1,170 +1,149 @@
 [
   {
-    "name": "JavaScript",
-    "symbol": "Js",
+    "name": "Python",
+    "symbol": "Py",
     "cat": "Language",
     "num": 1
   },
   {
-    "name": "TypeScript",
-    "symbol": "Ts",
+    "name": "Java",
+    "symbol": "Jv",
     "cat": "Language",
     "num": 2
   },
   {
-    "name": "Python",
-    "symbol": "Py",
+    "name": "C/C++",
+    "symbol": "C+",
     "cat": "Language",
     "num": 3
   },
   {
-    "name": "Rust",
-    "symbol": "Rs",
+    "name": "HTML/CSS",
+    "symbol": "HC",
     "cat": "Language",
     "num": 4
   },
   {
     "name": "React",
     "symbol": "Rc",
-    "cat": "Frontend",
+    "cat": "Development",
     "num": 5
   },
   {
-    "name": "Next.js",
-    "symbol": "Nx",
-    "cat": "Frontend",
+    "name": "n8n",
+    "symbol": "n8",
+    "cat": "Development",
     "num": 6
   },
   {
-    "name": "Vue.js",
-    "symbol": "Vu",
-    "cat": "Frontend",
-    "num": 7
-  },
-  {
-    "name": "Tailwind",
-    "symbol": "Tw",
-    "cat": "Frontend",
-    "num": 8
-  },
-  {
-    "name": "Three.js",
-    "symbol": "3js",
-    "cat": "Frontend",
-    "num": 9
-  },
-  {
-    "name": "HTML5",
-    "symbol": "H5",
-    "cat": "Frontend",
-    "num": 10
-  },
-  {
-    "name": "CSS3",
-    "symbol": "Cs",
-    "cat": "Frontend",
-    "num": 11
-  },
-  {
-    "name": "Framer",
-    "symbol": "Fm",
-    "cat": "Frontend",
-    "num": 12
-  },
-  {
-    "name": "Node.js",
-    "symbol": "Nd",
-    "cat": "Backend",
-    "num": 13
-  },
-  {
-    "name": "Express",
-    "symbol": "Ex",
-    "cat": "Backend",
-    "num": 14
-  },
-  {
-    "name": "GraphQL",
-    "symbol": "Gq",
-    "cat": "Backend",
-    "num": 15
-  },
-  {
-    "name": "Postgres",
+    "name": "Pygame",
     "symbol": "Pg",
-    "cat": "Data",
-    "num": 16
-  },
-  {
-    "name": "Mongo",
-    "symbol": "Mg",
-    "cat": "Data",
-    "num": 17
-  },
-  {
-    "name": "Redis",
-    "symbol": "Rd",
-    "cat": "Data",
-    "num": 18
-  },
-  {
-    "name": "Prisma",
-    "symbol": "Pr",
-    "cat": "Backend",
-    "num": 19
-  },
-  {
-    "name": "Auth0",
-    "symbol": "Au",
-    "cat": "Backend",
-    "num": 20
+    "cat": "Development",
+    "num": 7
   },
   {
     "name": "Docker",
     "symbol": "Dk",
-    "cat": "DevOps",
-    "num": 21
-  },
-  {
-    "name": "K8s",
-    "symbol": "K8",
-    "cat": "DevOps",
-    "num": 22
-  },
-  {
-    "name": "AWS",
-    "symbol": "Aw",
-    "cat": "DevOps",
-    "num": 23
-  },
-  {
-    "name": "Git",
-    "symbol": "Gt",
-    "cat": "DevOps",
-    "num": 24
+    "cat": "Development",
+    "num": 8
   },
   {
     "name": "Linux",
     "symbol": "Lx",
-    "cat": "DevOps",
-    "num": 25
+    "cat": "Development",
+    "num": 9
   },
   {
+    "name": "Git",
+    "symbol": "Gt",
+    "cat": "Development",
+    "num": 10
+  },
+  {
+    "name": "Web Dev",
+    "symbol": "Wd",
+    "cat": "Development",
+    "num": 11
+  },
+  {
+    "name": "DSA",
+    "symbol": "DS",
+    "cat": "Development",
+    "num": 12
+  },
+  {
+    "name": "Prototyping",
+    "symbol": "Pt",
+    "cat": "Development",
+    "num": 13
+  },
+  {
+    "name": "Debugging",
+    "symbol": "Db",
+    "cat": "Development",
+    "num": 14
+  },
+ 
+  {
+    "name": "AI/ML",
+    "symbol": "AI",
+    "cat": "AI/ML",
+    "num": 15
+  },
+  {
+    "name": "Prompting",
+    "symbol": "Pm",
+    "cat": "AI/ML",
+    "num": 16
+  },
+  {
+    "name": "Agent Development",
+    "symbol": "🤖",
+    "cat": "AI/ML",
+    "num": 17
+  },
+  {
+    "name": "Vibe Coding",
+    "symbol": "Vc",
+    "cat": "AI/ML",
+    "num": 18
+  },
+ {
     "name": "Figma",
-    "symbol": "Fi",
+    "symbol": "Fg",
     "cat": "Design",
-    "num": 26
-  },
-  {
-    "name": "Adobe",
-    "symbol": "Ps",
-    "cat": "Design",
-    "num": 27
+    "num": 19
   },
   {
     "name": "Blender",
     "symbol": "Bl",
     "cat": "Design",
-    "num": 28
+    "num": 20
+  },
+  {
+    "name": "Video Editing",
+    "symbol": "Ve",
+    "cat": "Design",
+    "num": 21
+  },
+  {
+    "name": "Problem Solving",
+    "symbol": "Ps",
+    "cat": "Soft Skills",
+    "num": 22
+  },
+  {
+    "name": "Leadership",
+    "symbol": "Ld",
+    "cat": "Soft Skills",
+    "num": 23
+  },
+
+
+  {
+    "name": "130 WPM",
+    "symbol": "WPM",
+    "cat": "Soft Skills",
+    "num": 24
   }
 ]

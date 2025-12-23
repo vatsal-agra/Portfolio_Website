@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import NavLink from './NavLink';
+import profilePic from '../assets/profile-pic.png.png';
 
 const navItems = [
   { name: 'Home', path: '/' },
@@ -38,12 +39,13 @@ const Navbar = () => {
           : 'bg-transparent py-5'
       }`}
     >
-      <div className="container mx-auto px-6 flex items-center justify-between">
-        <Link
-          to="/"
-          className="text-xl font-bold text-gradient"
-        >
-          VA
+      <div className="w-full px-8 flex items-center justify-between">
+        <Link to="/" className="flex items-center">
+          <img 
+            src={profilePic} 
+            alt="Vatsal Agrawal" 
+            className="w-10 h-10 rounded-full object-cover border-2 border-primary/30 hover:border-primary/70 transition-all duration-300"
+          />
         </Link>
 
         {/* Desktop Menu */}

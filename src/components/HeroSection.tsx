@@ -100,24 +100,29 @@ const HeroSection = () => {
           {/* Social Links */}
           <div className="flex items-center justify-center gap-4 animate-fade-in opacity-0" style={{ animationDelay: '1s', animationFillMode: 'forwards' }}>
             <a
-              href="https://github.com"
+              href="https://github.com/vatsal-agra"
               target="_blank"
               rel="noopener noreferrer"
               className="p-3 rounded-full glass hover:bg-primary/20 transition-all duration-300 group"
+              aria-label="GitHub Profile"
             >
               <Github className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
             </a>
             <a
-              href="https://linkedin.com"
+              href="https://www.linkedin.com/in/vatsal-agrawal-a7a9641b0"
               target="_blank"
               rel="noopener noreferrer"
               className="p-3 rounded-full glass hover:bg-primary/20 transition-all duration-300 group"
+              aria-label="LinkedIn Profile"
             >
               <Linkedin className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
             </a>
             <a
-              href="mailto:vatsal@example.com"
+              href="https://mail.google.com/mail/?view=cm&fs=1&to=agrawal.vatsal@gmail.com"
+              target="_blank"
+              rel="noopener noreferrer"
               className="p-3 rounded-full glass hover:bg-primary/20 transition-all duration-300 group"
+              aria-label="Send Email"
             >
               <Mail className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
             </a>

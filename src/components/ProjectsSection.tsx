@@ -12,6 +12,7 @@ const projects = [
     featured: true,
     icon: ShoppingBag,
     status: 'Completed',
+    thumbnail: '/project-thumbnails/shoes-aggregator.jpg',
     details: 'Full-stack web application that scrapes and aggregates shoe data from various e-commerce platforms, allowing users to compare prices and find the best deals.',
   },
   {
@@ -23,6 +24,7 @@ const projects = [
     featured: true,
     icon: Youtube,
     status: 'In Progress',
+    thumbnail: '/project-thumbnails/youtube-automation.jpg',
     details: 'Workflow automation system that handles video scheduling, thumbnail generation, metadata optimization, and analytics reporting.',
   },
   {
@@ -34,6 +36,7 @@ const projects = [
     featured: true,
     icon: Stethoscope,
     status: 'In Progress',
+    thumbnail: '/project-thumbnails/insulin-management.jpg',
     details: 'Machine learning system that helps predict insulin dosage, track glucose levels, and provide personalized recommendations for patients and healthcare providers.',
   },
   {
@@ -45,6 +48,7 @@ const projects = [
     featured: false,
     icon: Gamepad2,
     status: 'Completed',
+    thumbnail: '/project-thumbnails/tic-tac-toe.jpg',
     details: 'Classic game with modern UI, featuring an unbeatable AI opponent using the minimax algorithm with alpha-beta pruning.',
   },
   {
@@ -56,6 +60,7 @@ const projects = [
     featured: true,
     icon: Box,
     status: 'In Progress',
+    thumbnail: '/project-thumbnails/3d-game.jpg',
     details: '3D adventure game featuring custom models, physics engine integration, and interactive environments.',
   },
   {
@@ -67,6 +72,7 @@ const projects = [
     featured: true,
     icon: Bird,
     status: 'Completed',
+    thumbnail: '/project-thumbnails/flappy-bird.jpg',
     details: 'Neural network that learns to play Flappy Bird through evolutionary algorithms, achieving superhuman performance.',
   },
   {
@@ -78,6 +84,7 @@ const projects = [
     featured: false,
     icon: Blocks,
     status: 'Completed',
+    thumbnail: '/project-thumbnails/brick-breaker.jpg',
     details: 'Retro-style arcade game with progressive difficulty, various power-ups, and high score tracking.',
   },
   {
@@ -89,6 +96,7 @@ const projects = [
     featured: false,
     icon: PenTool,
     status: 'Completed',
+    thumbnail: '/project-thumbnails/hangman.jpg',
     details: 'Word guessing game with animated hangman drawings and extensive word dictionary.',
   },
   {
@@ -98,6 +106,7 @@ const projects = [
     github: '#',
     demo: '#',
     featured: false,
+    thumbnail: '/project-thumbnails/car-racing.jpg',
     icon: Car,
     status: 'Completed',
     details: 'Arcade-style racing game with smooth controls, collision detection, and progressive speed increases.',
@@ -130,6 +139,7 @@ const projects = [
     tech: ['Python', 'Pygame'],
     github: '#',
     demo: '#',
+    thumbnail: '/project-thumbnails/space-invaders.jpg',
     featured: false,
     icon: Rocket,
     status: 'Completed',
@@ -179,123 +189,158 @@ const ProjectsSection = () => {
                   : 'glass text-muted-foreground hover:text-foreground'
               }`}
             >
-              {tab === 'all' ? 'All Projects' : 'Featured'}
+              {tab.charAt(0).toUpperCase() + tab.slice(1)}
             </button>
           ))}
         </div>
 
         {/* Projects Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-          {filteredProjects.map((project, index) => {
-            const IconComponent = project.icon;
-            return (
-              <div
-                key={project.title}
-                onClick={() => setSelectedProject(project)}
-                className="group glass rounded-xl p-5 hover:border-primary/50 transition-all duration-500 hover:-translate-y-2 relative animate-slide-up cursor-pointer"
-                style={{ animationDelay: `${100 + index * 50}ms` }}
-              >
-                {/* Header */}
-                <div className="flex items-center justify-between mb-4">
-                  <IconComponent className="w-8 h-8 text-primary" />
-                  <span className={`text-xs font-mono px-2 py-1 rounded-full ${
-                    project.status === 'Completed' ? 'bg-green-500/20 text-green-400' : 'bg-yellow-500/20 text-yellow-400'
-                  }`}>
-                    {project.status}
-                  </span>
-                </div>
-
-                {/* Content */}
-                <h3 className="text-lg font-semibold mb-2 group-hover:text-primary transition-colors">
-                  {project.title}
-                </h3>
-                <p className="text-muted-foreground text-sm mb-4 line-clamp-2">
-                  {project.description}
-                </p>
-
-                {/* Tech Stack */}
-                <div className="flex flex-wrap gap-2">
-                  {project.tech.map((tech) => (
-                    <span
-                      key={tech}
-                      className="text-xs font-mono px-2 py-1 rounded-md bg-muted text-primary"
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filteredProjects.map((project, index) => (
+            <div 
+              key={project.title}
+              onClick={() => setSelectedProject(project)}
+              className="bg-[#18181b] rounded-xl overflow-hidden border border-zinc-800 hover:border-zinc-700 transition-colors cursor-pointer flex flex-col h-full"
+            >
+              {/* Thumbnail */}
+              <div className="h-48 bg-zinc-800 relative overflow-hidden">
+                <img 
+                  src={project.thumbnail || '/placeholder.svg'} 
+                  alt={project.title}
+                  className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.src = '/placeholder.svg';
+                  }}
+                />
+                <div className="absolute top-2 right-2 flex space-x-2">
+                  {project.github && (
+                    <a 
+                      href={project.github} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="bg-black/70 text-white p-2 rounded-full hover:bg-black transition-colors"
+                      onClick={e => e.stopPropagation()}
                     >
+                      <Github size={16} />
+                    </a>
+                  )}
+                  {project.demo && (
+                    <a 
+                      href={project.demo} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="bg-black/70 text-white p-2 rounded-full hover:bg-black transition-colors"
+                      onClick={e => e.stopPropagation()}
+                    >
+                      <ExternalLink size={16} />
+                    </a>
+                  )}
+                </div>
+              </div>
+              
+              {/* Project Info */}
+              <div className="p-6 flex-1 flex flex-col">
+                <div className="flex items-center justify-between mb-3">
+                  <project.icon className="w-6 h-6 text-blue-400" />
+                  <div className="flex items-center text-sm text-zinc-500">
+                    <span className={`w-2 h-2 rounded-full mr-2 ${
+                      project.status === 'Completed' ? 'bg-green-500' : 'bg-yellow-500'
+                    }`}></span>
+                    {project.status}
+                  </div>
+                </div>
+                
+                <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
+                <p className="text-zinc-400 mb-4 flex-1">{project.description}</p>
+                
+                <div className="flex flex-wrap gap-2 mt-4 pt-4 border-t border-zinc-800">
+                  {project.tech.map((tech, i) => (
+                    <span key={i} className="text-xs bg-zinc-800 text-zinc-300 px-2 py-1 rounded">
                       {tech}
                     </span>
                   ))}
                 </div>
-
-                {/* Featured Badge */}
-                {project.featured && (
-                  <div className="absolute top-4 right-4">
-                    <span className="text-sm font-mono text-accent">★</span>
-                  </div>
-                )}
               </div>
-            );
-          })}
+            </div>
+          ))}
         </div>
 
         {/* Project Detail Modal */}
-        <Dialog open={!!selectedProject} onOpenChange={() => setSelectedProject(null)}>
-          <DialogContent className="glass border-primary/20 max-w-2xl">
+        <Dialog open={!!selectedProject} onOpenChange={(open) => !open && setSelectedProject(null)}>
+          <DialogContent className="bg-[#18181b] border-zinc-800 max-w-2xl max-h-[90vh] overflow-y-auto p-0">
             {selectedProject && (
               <>
-                <DialogHeader>
-                  <div className="flex items-center gap-3">
-                    <selectedProject.icon className="w-8 h-8 text-primary" />
-                    <div>
-                      <DialogTitle className="text-xl">{selectedProject.title}</DialogTitle>
-                      <span className={`text-xs font-mono px-2 py-0.5 rounded-full ${
-                        selectedProject.status === 'Completed' ? 'bg-green-500/20 text-green-400' : 'bg-yellow-500/20 text-yellow-400'
-                      }`}>
-                        {selectedProject.status}
-                      </span>
+                {/* Thumbnail in Modal */}
+                <div className="h-48 bg-zinc-800 relative">
+                  <img 
+                    src={selectedProject.thumbnail || '/placeholder.svg'} 
+                    alt={selectedProject.title}
+                    className="w-full h-full object-cover"
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      target.src = '/placeholder.svg';
+                    }}
+                  />
+                  <button 
+                    onClick={() => setSelectedProject(null)}
+                    className="absolute top-4 right-4 bg-black/70 text-white p-2 rounded-full hover:bg-black transition-colors"
+                  >
+                    <X size={20} />
+                  </button>
+                </div>
+
+                <div className="p-6">
+                  <DialogHeader>
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <DialogTitle className="text-2xl font-bold">{selectedProject.title}</DialogTitle>
+                        <div className="flex items-center mt-1 text-sm text-zinc-400">
+                          <span className={`w-2 h-2 rounded-full mr-2 ${
+                            selectedProject.status === 'Completed' ? 'bg-green-500' : 'bg-yellow-500'
+                          }`}></span>
+                          {selectedProject.status}
+                        </div>
+                      </div>
+                    </div>
+                  </DialogHeader>
+
+                  <div className="mt-6 space-y-6">
+                    <p className="text-zinc-300">{selectedProject.details}</p>
+                    
+                    <div className="flex flex-wrap gap-2">
+                      {selectedProject.tech.map((tech, i) => (
+                        <span key={i} className="text-xs bg-zinc-800 text-zinc-300 px-2 py-1 rounded">
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+
+                    <div className="flex flex-wrap gap-3 pt-4 border-t border-zinc-800">
+                      {selectedProject.github && (
+                        <a 
+                          href={selectedProject.github} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center px-4 py-2 bg-zinc-800 hover:bg-zinc-700 text-white rounded-md transition-colors text-sm"
+                        >
+                          <Github size={16} className="mr-2" />
+                          View Code
+                        </a>
+                      )}
+                      {selectedProject.demo && (
+                        <a 
+                          href={selectedProject.demo} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md transition-colors text-sm"
+                        >
+                          <ExternalLink size={16} className="mr-2" />
+                          Live Demo
+                        </a>
+                      )}
                     </div>
                   </div>
-                </DialogHeader>
-                
-                {/* Placeholder for images */}
-                <div className="aspect-video rounded-lg bg-muted/50 border border-dashed border-muted-foreground/30 flex items-center justify-center">
-                  <span className="text-muted-foreground text-sm">Project images coming soon</span>
-                </div>
-
-                <DialogDescription className="text-foreground/80 text-sm">
-                  {selectedProject.details}
-                </DialogDescription>
-
-                {/* Tech Stack */}
-                <div className="flex flex-wrap gap-2">
-                  {selectedProject.tech.map((tech) => (
-                    <span
-                      key={tech}
-                      className="text-sm font-mono px-3 py-1 rounded-full bg-primary/20 text-primary"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-
-                {/* Links */}
-                <div className="flex gap-4 pt-2">
-                  <a
-                    href={selectedProject.github}
-                    className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <Github className="w-5 h-5" />
-                    <span className="text-sm">View Code</span>
-                  </a>
-                  <a
-                    href={selectedProject.demo}
-                    className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <ExternalLink className="w-5 h-5" />
-                    <span className="text-sm">Live Demo</span>
-                  </a>
                 </div>
               </>
             )}
