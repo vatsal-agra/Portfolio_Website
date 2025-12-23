@@ -157,18 +157,18 @@ const ProjectsSection = () => {
   const filteredProjects = filter === 'all' ? projects : projects.filter(p => p.featured);
 
   return (
-    <section className="h-full flex items-center justify-center pt-16">
+    <section className="min-h-screen py-24">
       <div className="container mx-auto px-6">
         {/* Section Header */}
-        <div className="text-center mb-4 animate-fade-in">
+        <div className="text-center mb-8 animate-fade-in">
           <span className="text-primary font-mono text-sm">{'// Projects'}</span>
-          <h2 className="text-2xl md:text-4xl font-bold mt-1">
+          <h2 className="text-3xl md:text-5xl font-bold mt-2">
             What I've <span className="text-gradient">Built</span>
           </h2>
         </div>
 
         {/* Filter Tabs */}
-        <div className="flex justify-center gap-4 mb-4 animate-fade-in" style={{ animationDelay: '0.2s' }}>
+        <div className="flex justify-center gap-4 mb-8 animate-fade-in" style={{ animationDelay: '0.2s' }}>
           {(['all', 'featured'] as const).map((tab) => (
             <button
               key={tab}
@@ -185,20 +185,20 @@ const ProjectsSection = () => {
         </div>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 max-w-6xl mx-auto max-h-[60vh] overflow-y-auto pr-2 scrollbar-thin">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
           {filteredProjects.map((project, index) => {
             const IconComponent = project.icon;
             return (
               <div
                 key={project.title}
                 onClick={() => setSelectedProject(project)}
-                className="group glass rounded-xl p-3 hover:border-primary/50 transition-all duration-500 hover:-translate-y-1 relative animate-slide-up cursor-pointer"
+                className="group glass rounded-xl p-5 hover:border-primary/50 transition-all duration-500 hover:-translate-y-2 relative animate-slide-up cursor-pointer"
                 style={{ animationDelay: `${100 + index * 50}ms` }}
               >
                 {/* Header */}
-                <div className="flex items-center justify-between mb-2">
-                  <IconComponent className="w-6 h-6 text-primary" />
-                  <span className={`text-xs font-mono px-2 py-0.5 rounded-full ${
+                <div className="flex items-center justify-between mb-4">
+                  <IconComponent className="w-8 h-8 text-primary" />
+                  <span className={`text-xs font-mono px-2 py-1 rounded-full ${
                     project.status === 'Completed' ? 'bg-green-500/20 text-green-400' : 'bg-yellow-500/20 text-yellow-400'
                   }`}>
                     {project.status}
@@ -206,32 +206,29 @@ const ProjectsSection = () => {
                 </div>
 
                 {/* Content */}
-                <h3 className="text-sm font-semibold mb-1 group-hover:text-primary transition-colors line-clamp-1">
+                <h3 className="text-lg font-semibold mb-2 group-hover:text-primary transition-colors">
                   {project.title}
                 </h3>
-                <p className="text-muted-foreground text-xs mb-2 line-clamp-2">
+                <p className="text-muted-foreground text-sm mb-4 line-clamp-2">
                   {project.description}
                 </p>
 
                 {/* Tech Stack */}
-                <div className="flex flex-wrap gap-1">
-                  {project.tech.slice(0, 2).map((tech) => (
+                <div className="flex flex-wrap gap-2">
+                  {project.tech.map((tech) => (
                     <span
                       key={tech}
-                      className="text-xs font-mono px-1.5 py-0.5 rounded bg-muted text-primary"
+                      className="text-xs font-mono px-2 py-1 rounded-md bg-muted text-primary"
                     >
                       {tech}
                     </span>
                   ))}
-                  {project.tech.length > 2 && (
-                    <span className="text-xs font-mono text-muted-foreground">+{project.tech.length - 2}</span>
-                  )}
                 </div>
 
                 {/* Featured Badge */}
                 {project.featured && (
-                  <div className="absolute top-2 right-2">
-                    <span className="text-xs font-mono text-accent">★</span>
+                  <div className="absolute top-4 right-4">
+                    <span className="text-sm font-mono text-accent">★</span>
                   </div>
                 )}
               </div>
