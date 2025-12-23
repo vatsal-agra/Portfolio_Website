@@ -1,127 +1,84 @@
 import { useState } from 'react';
+import skills from '@/data/skillsData.json';
 
-const skillCategories = [
-  {
-    title: 'Languages',
-    skills: [
-      { name: 'Python', level: 90 },
-      { name: 'JavaScript', level: 85 },
-      { name: 'TypeScript', level: 75 },
-      { name: 'C++', level: 70 },
-    ],
-  },
-  {
-    title: 'AI/ML',
-    skills: [
-      { name: 'TensorFlow', level: 80 },
-      { name: 'PyTorch', level: 75 },
-      { name: 'Scikit-learn', level: 85 },
-      { name: 'Pandas', level: 90 },
-    ],
-  },
-  {
-    title: 'Web Dev',
-    skills: [
-      { name: 'React', level: 85 },
-      { name: 'Node.js', level: 75 },
-      { name: 'Tailwind CSS', level: 90 },
-      { name: 'MongoDB', level: 75 },
-    ],
-  },
-  {
-    title: 'Tools',
-    skills: [
-      { name: 'Git', level: 90 },
-      { name: 'Docker', level: 65 },
-      { name: 'VS Code', level: 95 },
-      { name: 'Linux', level: 75 },
-    ],
-  },
-];
-
-const SkillsSection = () => {
-  const [hoveredSkill, setHoveredSkill] = useState<string | null>(null);
-
-  return (
-    <section className="h-full flex items-center justify-center pt-16 neural-grid">
-      <div className="container mx-auto px-6">
-        {/* Section Header */}
-        <div className="text-center mb-8 animate-fade-in">
-          <span className="text-primary font-mono text-sm">{'// Skills & Technologies'}</span>
-          <h2 className="text-3xl md:text-5xl font-bold mt-2">
-            My <span className="text-gradient">Arsenal</span>
-          </h2>
-          <p className="text-muted-foreground mt-3 max-w-2xl mx-auto text-sm md:text-base">
-            Technologies I've been working with and continuously learning
-          </p>
-        </div>
-
-        {/* Skills Grid */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto">
-          {skillCategories.map((category, catIndex) => (
-            <div
-              key={category.title}
-              className="glass rounded-2xl p-4 animate-slide-up"
-              style={{ animationDelay: `${catIndex * 100}ms` }}
-            >
-              <h3 className="text-base font-semibold mb-4 text-center">
-                <span className="text-primary">{'{'}</span>
-                {' '}{category.title}{' '}
-                <span className="text-primary">{'}'}</span>
-              </h3>
-
-              <div className="space-y-3">
-                {category.skills.map((skill, skillIndex) => (
-                  <div
-                    key={skill.name}
-                    className="group cursor-pointer"
-                    onMouseEnter={() => setHoveredSkill(skill.name)}
-                    onMouseLeave={() => setHoveredSkill(null)}
-                  >
-                    <div className="flex justify-between items-center mb-1">
-                      <span className="text-xs font-medium text-muted-foreground group-hover:text-foreground transition-colors">
-                        {skill.name}
-                      </span>
-                      <span className={`text-xs font-mono transition-opacity ${
-                        hoveredSkill === skill.name ? 'opacity-100 text-primary' : 'opacity-0'
-                      }`}>
-                        {skill.level}%
-                      </span>
-                    </div>
-                    <div className="h-1 bg-muted rounded-full overflow-hidden">
-                      <div
-                        className="h-full rounded-full bg-gradient-to-r from-primary to-secondary animate-[grow_1s_ease-out_forwards]"
-                        style={{
-                          width: `${skill.level}%`,
-                          animationDelay: `${catIndex * 150 + skillIndex * 100}ms`,
-                        }}
-                      />
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Floating Tech Icons */}
-        <div className="mt-8 flex flex-wrap justify-center gap-3">
-          {['🐍', '⚛️', '🧠', '🔥', '🌐', '📊', '🤖', '💻'].map((emoji, index) => (
-            <div
-              key={index}
-              className="w-10 h-10 rounded-xl glass flex items-center justify-center text-xl hover:scale-110 hover:-translate-y-1 transition-all duration-300 animate-fade-in"
-              style={{
-                animationDelay: `${600 + index * 50}ms`,
-                animation: `float ${3 + index * 0.5}s ease-in-out infinite`,
-              }}
-            >
-              {emoji}
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
+const categories: Record<string, { color: string; bg: string; hover: string }> = {
+  "Language": { color: "text-yellow-400", bg: "bg-yellow-500", hover: "hover:border-yellow-400" },
+  "Frontend": { color: "text-cyan-400", bg: "bg-cyan-500", hover: "hover:border-cyan-400" },
+  "Backend": { color: "text-violet-400", bg: "bg-violet-500", hover: "hover:border-violet-400" },
+  "DevOps": { color: "text-rose-400", bg: "bg-rose-500", hover: "hover:border-rose-400" },
+  "Design": { color: "text-pink-400", bg: "bg-pink-500", hover: "hover:border-pink-400" },
+  "Data": { color: "text-emerald-400", bg: "bg-emerald-500", hover: "hover:border-emerald-400" },
 };
 
-export default SkillsSection;
+export default function SkillsSection() {
+  const [filter, setFilter] = useState<string | null>(null);
+
+  return (
+    <div className="flex min-h-screen bg-[#09090b] text-white">
+      {/* Legend / Sidebar */}
+      <aside className="w-64 border-r border-zinc-800 p-6 hidden md:block">
+        <h2 className="text-sm font-bold text-zinc-500 mb-4 uppercase tracking-widest">Categories</h2>
+        <div className="space-y-2">
+          {Object.keys(categories).map(cat => (
+            <button
+              key={cat}
+              onClick={() => setFilter(filter === cat ? null : cat)}
+              className={`w-full text-left px-3 py-2 rounded-md transition-colors flex items-center gap-3
+                ${filter === cat ? 'bg-zinc-800 border border-zinc-700' : 'hover:bg-zinc-900 border border-transparent'}
+              `}
+            >
+              <div className={`w-3 h-3 rounded-sm ${categories[cat].bg}`} />
+              <span className="text-sm text-zinc-300">{cat}</span>
+            </button>
+          ))}
+        </div>
+      </aside>
+
+      {/* Grid */}
+      <main className="flex-1 p-8 overflow-y-auto">
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-3 max-w-[1600px] mx-auto">
+          {skills.map(skill => {
+            const style = categories[skill.cat];
+            const isDimmed = filter && filter !== skill.cat;
+            
+            return (
+              <div 
+                key={skill.name}
+                className={`
+                  relative aspect-square bg-[#18181b] border border-zinc-800 rounded-md p-3
+                  flex flex-col justify-between cursor-default group overflow-hidden
+                  transition-all duration-300
+                  ${isDimmed ? 'opacity-10 grayscale blur-[1px]' : 'hover:scale-140 hover:z-50 hover:shadow-[0_20px_50px_rgba(0,0,0,0.9)]'}
+                  ${style.hover}
+                `}
+              >
+                {/* Background Glow */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-20 bg-gradient-to-br from-white to-transparent transition-opacity" />
+                
+                {/* Top Info */}
+                <div className="flex justify-between items-start z-10">
+                  <span className="text-[10px] font-mono text-zinc-500 group-hover:text-white transition-colors">{skill.num}</span>
+                  <div className={`w-1.5 h-1.5 rounded-full ${style.bg} opacity-50 group-hover:opacity-100`} />
+                </div>
+
+                {/* Big Symbol */}
+                <div className="absolute inset-0 flex items-center justify-center z-10 transition-all duration-300 group-hover:scale-150 group-hover:opacity-10 group-hover:blur-sm">
+                  <h2 className={`text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-white to-zinc-500 ${style.color}`}>
+                    {skill.symbol}
+                  </h2>
+                </div>
+
+                {/* Full Name (Revealed) */}
+                <div className="absolute inset-0 flex items-center justify-center z-20 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0">
+                  <h3 className="text-xl font-bold text-white text-center leading-tight drop-shadow-md">
+                    {skill.name}
+                  </h3>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </main>
+    </div>
+  );
+}

@@ -13,6 +13,9 @@ export default {
       },
     },
     extend: {
+      scale: {
+        '140': '1.4',
+      },
       fontFamily: {
         sans: ['Space Grotesk', 'sans-serif'],
         mono: ['JetBrains Mono', 'monospace'],
