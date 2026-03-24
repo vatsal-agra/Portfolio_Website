@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import skills from '@/data/skillsData.json';
-import { FaPython, FaJava, FaHtml5, FaCss3Alt, FaReact, FaDocker, FaLinux, FaGitAlt } from 'react-icons/fa';
+import { FaPython, FaJava, FaHtml5, FaCss3Alt, FaReact, FaDocker, FaLinux, FaGitAlt, FaProjectDiagram, FaNetworkWired, FaLink, FaEye } from 'react-icons/fa';
 import { FaFigma } from 'react-icons/fa6';
-import { SiCplusplus, SiBlender, SiAdobepremierepro, SiLeetcode } from 'react-icons/si';
+import { SiCplusplus, SiBlender, SiAdobepremierepro, SiLeetcode, SiTypescript, SiFlutter, SiFirebase, SiTailwindcss, SiFlask, SiGoogle } from 'react-icons/si';
 import { IoAnalytics } from 'react-icons/io5';
 import n8nLogo from '@/assets/n8n-removebg-preview.png';
 
@@ -30,7 +30,21 @@ const skillIcons: Record<string, JSX.Element> = {
   'Video Editing': <SiAdobepremierepro className="text-3xl text-blue-400" />,
   'Problem Solving': <div className="text-3xl">🧩</div>,
   'Leadership': <div className="text-3xl">👥</div>,
-  '130 WPM': <div className="text-3xl">⌨️</div>,
+  '120 WPM': <div className="text-3xl">⌨️</div>,
+  'TypeScript': <SiTypescript className="text-3xl text-blue-500" />,
+  'REST APIs': <div className="text-3xl">🔌</div>,
+  'OOP': <div className="text-3xl">🧬</div>,
+  'System Design': <FaProjectDiagram className="text-3xl text-zinc-400" />,
+  'Flutter': <SiFlutter className="text-3xl text-blue-400" />,
+  'Firebase': <SiFirebase className="text-3xl text-yellow-500" />,
+  'Tailwind CSS': <SiTailwindcss className="text-3xl text-cyan-400" />,
+  'Flask': <SiFlask className="text-3xl text-white" />,
+  'Neural Networks': <FaNetworkWired className="text-3xl text-purple-400" />,
+  'LangChain': <FaLink className="text-3xl text-emerald-500" />,
+  'Gemini API': <SiGoogle className="text-3xl text-blue-500" />,
+  'Computer Vision': <FaEye className="text-3xl text-teal-400" />,
+  'Self-learning': <div className="text-3xl">📚</div>,
+  'Cross-domain': <div className="text-3xl">🌉</div>,
 };
 
 const categories: Record<string, { color: string; bg: string; hover: string }> = {
@@ -66,16 +80,16 @@ export default function SkillsSection() {
       </aside>
 
       {/* Grid */}
-      <main className="flex-1 p-6 overflow-y-auto">
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-3 max-w-[1600px] mx-auto">
+      <main className="flex-1 p-6 overflow-y-auto overflow-x-hidden">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 2xl:grid-cols-9 gap-4 w-full max-w-none pb-8">
           {Object.entries(skillIcons).map(([name, icon]) => {
             const skill = skills.find(s => s.name === name);
             if (!skill) return null;
-            
+
             const isFiltered = filter && skill.cat !== filter;
-            
+
             return (
-              <div 
+              <div
                 key={name}
                 className={`
                   relative aspect-square bg-[#18181b] border border-zinc-800 rounded-md p-3
@@ -87,7 +101,7 @@ export default function SkillsSection() {
               >
                 {/* Background Glow */}
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-20 bg-gradient-to-br from-white to-transparent transition-opacity" />
-                
+
                 {/* Top Info */}
                 <div className="flex justify-between items-start z-10">
                   <span className="text-[10px] font-mono text-zinc-500 group-hover:text-white transition-colors">{skill.num}</span>
@@ -99,14 +113,14 @@ export default function SkillsSection() {
                   <div className="flex items-center justify-center w-12 h-12 rounded-full bg-gray-800 text-white text-2xl">
                     {icon}
                   </div>
-                  <span className="text-lg text-zinc-500 mt-1.5 text-center px-1 line-clamp-1">
+                  <span className="text-sm text-zinc-500 mt-1.5 text-center px-2 line-clamp-1">
                     {name}
                   </span>
                 </div>
 
                 {/* Full Name (Revealed on Hover) */}
-                <div className="absolute inset-0 flex items-center justify-center z-20 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0">
-                  <h3 className="text-xl font-bold text-white text-center leading-tight drop-shadow-md">
+                <div className="absolute inset-0 flex items-center justify-center z-20 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0 px-2 pointer-events-none">
+                  <h3 className="text-sm sm:text-base font-bold text-white text-center leading-tight drop-shadow-md">
                     {name}
                   </h3>
                 </div>

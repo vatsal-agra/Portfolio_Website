@@ -1,25 +1,40 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- TODO: Set the document title to the name of your application -->
-    <title>Lovable App</title>
-    <meta name="description" content="Portfolio Website" />
-    <meta name="author" content="Lovable" />
 
-    <!-- TODO: Update og:title to match your application name -->
-    <meta property="og:title" content="portfolio website" />
-    <meta property="og:description" content="Portfolio website" />
-    <meta property="og:type" content="website" />
-    
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@Lovable" />
-    
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- TODO: Set the document title to the name of your application -->
+  <title>Vatsal's Portfolio</title>
+  <meta name="description" content="Vatsal's Portfolio" />
+  <meta name="author" content="Vatsal's Portfolio" />
 
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+  <!-- TODO: Update og:title to match your application name -->
+  <meta property="og:title" content="Vatsal's Portfolio" />
+  <meta property="og:description" content="Vatsal's Portfolio" />
+  <meta property="og:type" content="Vatsal's Portfolio" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@Vatsal's Portfolio" />
+
+  <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css" />
+  <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+  <script type="py-config">
+        {
+            "packages": ["pygame-ce"],
+            "fetch": [
+                {
+                    "from": "/space_invaders/",
+                    "files": ["main.py", "rocket.png", "background.png", "alien (1).png", "bullet.png", "2X SPEED (2).png", "space-invaders.png", "play.png", "maxed.png"]
+                }
+            ]
+        }
+    </script>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.tsx"></script>
+</body>
+
 </html>

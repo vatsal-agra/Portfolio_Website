@@ -4,8 +4,8 @@ import profilePic from '../assets/profile-pic.png.png';
 const stats = [
   { value: '2nd', label: 'Year Student', icon: Rocket },
   { value: '15+', label: 'Projects Built', icon: Code },
-  { value: '10+', label: 'Skills', icon: Brain },
-  { value: '∞', label: 'Ideas to Build', icon: Lightbulb },
+  { value: '120', label: 'WPM Typing', icon: Brain },
+  { value: '2nd', label: 'GDG Hackathon', icon: Lightbulb },
 ];
 
 const AboutSection = () => {
@@ -49,8 +49,19 @@ const AboutSection = () => {
               When I'm not training models or debugging code, you'll find me exploring new technologies, contributing to open source, or brainstorming the next big idea. I'm deeply passionate about applying my skills in Deep Learning, Computer Vision, and Full-Stack Development to create impactful solutions.
             </p>
             <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-              I'm constantly expanding my knowledge and love diving into new challenges that push the boundaries of what's possible with technology. Whether it's building intelligent systems or crafting beautiful user experiences, I'm always excited to learn and grow.
+              I'm constantly expanding my knowledge and love diving into new challenges. Recently, I secured <strong>2nd Place at the GDG FlutterSprint Hackathon</strong> by building MockMate, an AI-powered mock interview app. Whether it's building intelligent systems or crafting beautiful user experiences, I'm always excited to create impactful solutions.
             </p>
+
+            <div className="pt-4 flex items-center gap-4">
+              <a 
+                href="/resume.pdf" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center px-6 py-3 bg-primary text-black font-semibold rounded-full hover:bg-white hover:text-black transition-all hover:scale-105 shadow-[0_0_20px_rgba(var(--primary),0.3)]"
+              >
+                View Full Resume
+              </a>
+            </div>
           </div>
 
           {/* Right Column - Stats Grid */}

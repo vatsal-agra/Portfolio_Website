@@ -1,8 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
 @layer base {
   :root {
@@ -133,6 +133,25 @@
       radial-gradient(circle at 1px 1px, hsl(var(--primary) / 0.15) 1px, transparent 0);
     background-size: 40px 40px;
   }
+
+  /* Markdown custom styling */
+  .github-markdown h1, .github-markdown h2, .github-markdown h3 {
+    @apply text-zinc-100 font-bold mt-6 mb-4 border-b border-zinc-800 pb-2;
+  }
+  .github-markdown h1 { @apply text-2xl; }
+  .github-markdown h2 { @apply text-xl; }
+  .github-markdown h3 { @apply text-lg; }
+  .github-markdown p { @apply text-zinc-400 mb-4; }
+  .github-markdown ul, .github-markdown ol { @apply mb-4 pl-6 space-y-2; }
+  .github-markdown ul { @apply list-disc; }
+  .github-markdown ol { @apply list-decimal; }
+  .github-markdown li { @apply text-zinc-400; }
+  .github-markdown code { @apply bg-zinc-800 text-primary px-1.5 py-0.5 rounded text-sm font-mono; }
+  .github-markdown pre { @apply bg-zinc-950 p-4 rounded-xl border border-zinc-800 my-4 overflow-x-auto; }
+  .github-markdown pre code { @apply bg-transparent p-0 text-zinc-300; }
+  .github-markdown blockquote { @apply border-l-4 border-primary/50 bg-primary/5 p-4 rounded-r-lg italic my-4 text-zinc-300; }
+  .github-markdown img { @apply rounded-xl border border-zinc-800 my-6; }
+  .github-markdown a { @apply text-primary hover:underline; }
 }
 
 @layer utilities {

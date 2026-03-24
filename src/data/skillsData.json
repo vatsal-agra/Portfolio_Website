@@ -99,7 +99,7 @@
   {
     "name": "Agent Development",
     "symbol": "🤖",
-    "cat": "AI/ML",
+    "cat": "Development",
     "num": 17
   },
   {
@@ -141,9 +141,93 @@
 
 
   {
-    "name": "130 WPM",
+    "name": "120 WPM",
     "symbol": "WPM",
     "cat": "Soft Skills",
     "num": 24
+  },
+  {
+    "name": "TypeScript",
+    "symbol": "TS",
+    "cat": "Language",
+    "num": 25
+  },
+  {
+    "name": "REST APIs",
+    "symbol": "RA",
+    "cat": "Development",
+    "num": 26
+  },
+  {
+    "name": "OOP",
+    "symbol": "OO",
+    "cat": "Development",
+    "num": 27
+  },
+  {
+    "name": "System Design",
+    "symbol": "SD",
+    "cat": "Development",
+    "num": 28
+  },
+  {
+    "name": "Flutter",
+    "symbol": "Fl",
+    "cat": "Development",
+    "num": 29
+  },
+  {
+    "name": "Firebase",
+    "symbol": "Fb",
+    "cat": "Development",
+    "num": 30
+  },
+  {
+    "name": "Tailwind CSS",
+    "symbol": "Tw",
+    "cat": "Development",
+    "num": 31
+  },
+  {
+    "name": "Flask",
+    "symbol": "Fk",
+    "cat": "Development",
+    "num": 32
+  },
+  {
+    "name": "Neural Networks",
+    "symbol": "NN",
+    "cat": "AI/ML",
+    "num": 33
+  },
+  {
+    "name": "LangChain",
+    "symbol": "Lc",
+    "cat": "AI/ML",
+    "num": 34
+  },
+  {
+    "name": "Gemini API",
+    "symbol": "Gm",
+    "cat": "AI/ML",
+    "num": 35
+  },
+  {
+    "name": "Computer Vision",
+    "symbol": "CV",
+    "cat": "AI/ML",
+    "num": 36
+  },
+  {
+    "name": "Self-learning",
+    "symbol": "SL",
+    "cat": "Soft Skills",
+    "num": 37
+  },
+  {
+    "name": "Cross-domain",
+    "symbol": "CD",
+    "cat": "Soft Skills",
+    "num": 38
   }
 ]

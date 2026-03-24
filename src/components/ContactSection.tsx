@@ -297,19 +297,7 @@ const ContactSection = () => {
         ))}
       </div>
 
-      {/* Footer */}
-      <footer className="mt-16 pt-8 border-t border-white/10 text-center">
-        <div className="flex items-center justify-center gap-2 text-muted-foreground text-sm">
-          <Code className="w-4 h-4" />
-          <span>with</span>
-          <Coffee className="w-4 h-4 text-amber-500" />
-          <span>by</span>
-          <a href="#" className="text-primary hover:underline">Vatsal Agrawal</a>
-        </div>
-        <p className="mt-2 text-xs text-muted-foreground">
-          © {new Date().getFullYear()} // Made with 💜 and lots of ☕
-        </p>
-      </footer>
+
 
       <style jsx global>{`
         @keyframes float {
