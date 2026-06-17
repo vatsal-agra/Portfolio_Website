@@ -46,6 +46,11 @@ const NeuralBackground = () => {
 
     window.addEventListener('mousemove', handleMouseMove);
 
+    const MAX_DIST_SQ = 150 * 150;
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let rafId = 0;
+    let running = true;
+
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -80,13 +85,14 @@ const NeuralBackground = () => {
         ctx.fillStyle = `hsla(187, 100%, 50%, ${particle.opacity})`;
         ctx.fill();
 
-        // Draw connections
-        particles.slice(i + 1).forEach((other) => {
-          const distance = Math.sqrt(
-            Math.pow(particle.x - other.x, 2) + Math.pow(particle.y - other.y, 2)
-          );
-
-          if (distance < 150) {
+        // Draw connections (skip the sqrt for pairs that are obviously too far)
+        for (let j = i + 1; j < particles.length; j++) {
+          const other = particles[j];
+          const dx = particle.x - other.x;
+          const dy = particle.y - other.y;
+          const distSq = dx * dx + dy * dy;
+          if (distSq < MAX_DIST_SQ) {
+            const distance = Math.sqrt(distSq);
             ctx.beginPath();
             ctx.moveTo(particle.x, particle.y);
             ctx.lineTo(other.x, other.y);
@@ -94,17 +100,39 @@ const NeuralBackground = () => {
             ctx.lineWidth = 0.5;
             ctx.stroke();
           }
-        });
+        }
       });
 
-      requestAnimationFrame(animate);
+      if (running) rafId = requestAnimationFrame(animate);
     };
 
-    animate();
+    const start = () => {
+      if (!running) {
+        running = true;
+        rafId = requestAnimationFrame(animate);
+      }
+    };
+    const stop = () => {
+      running = false;
+      cancelAnimationFrame(rafId);
+    };
+    const onVisibility = () => (document.hidden ? stop() : start());
+    document.addEventListener('visibilitychange', onVisibility);
+
+    if (reduce) {
+      // Honour reduced-motion: paint a single static frame, no animation loop.
+      running = false;
+      animate();
+    } else {
+      rafId = requestAnimationFrame(animate);
+    }
 
     return () => {
+      running = false;
+      cancelAnimationFrame(rafId);
       window.removeEventListener('resize', resizeCanvas);
       window.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('visibilitychange', onVisibility);
     };
   }, []);
 
@@ -112,7 +140,7 @@ const NeuralBackground = () => {
     <canvas
       ref={canvasRef}
       className="fixed inset-0 pointer-events-none z-0"
-      style={{ opacity: 0.6 }}
+      style={{ opacity: 0.4 }}
     />
   );
 };
