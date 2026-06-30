@@ -86,14 +86,23 @@ const ProjectDetails = ({
 }) => (
   <>
     <div className="h-64 bg-zinc-900 relative flex-shrink-0">
-      <img
-        src={getProjectImage(project)}
-        alt={project.title}
-        className="w-full h-full object-cover object-top"
-        onError={(e) => {
-          (e.target as HTMLImageElement).src = '/placeholder.svg';
-        }}
-      />
+      {project.thumbnail ? (
+        <img
+          src={getProjectImage(project)}
+          alt={project.title}
+          className="w-full h-full object-cover object-center"
+          onError={(e) => {
+            (e.target as HTMLImageElement).src = '/placeholder.svg';
+          }}
+        />
+      ) : (
+        <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-primary/25 via-[#0c0c12] to-secondary/20">
+          <div className="absolute inset-0 dot-grid opacity-30" />
+          <div className="relative z-10 flex h-24 w-24 items-center justify-center rounded-2xl border border-white/15 bg-white/5 backdrop-blur">
+            <project.icon className="h-11 w-11 text-white" />
+          </div>
+        </div>
+      )}
       <div className="absolute inset-0 bg-gradient-to-t from-[#0c0c12] via-transparent to-transparent" />
     </div>
 

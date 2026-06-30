@@ -21,7 +21,7 @@ const SOCIALS = [
   },
   {
     label: 'LinkedIn',
-    href: 'https://www.linkedin.com/in/vatsal-agrawal-a7a9641b0',
+    href: 'https://www.linkedin.com/in/vatsal2006',
     icon: Linkedin,
     external: true,
   },
@@ -93,7 +93,7 @@ const Footer = () => {
                 </button>
 
                 <p className="max-w-sm text-sm leading-relaxed text-muted-foreground">
-                  AI/ML Engineer in the making. Building intelligent, playful software.
+                  AI/ML engineer &amp; co-founder of AISkillBench. Shipping production AI systems end-to-end.
                 </p>
 
                 <Magnetic strength={0.35}>

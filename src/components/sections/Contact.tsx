@@ -14,7 +14,7 @@ const socialLinks = [
   },
   {
     icon: Linkedin,
-    href: 'https://www.linkedin.com/in/vatsal-agrawal-a7a9641b0',
+    href: 'https://www.linkedin.com/in/vatsal2006',
     label: 'LinkedIn',
   },
   {

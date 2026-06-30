@@ -13,6 +13,7 @@ import {
   FaNetworkWired,
   FaLink,
   FaEye,
+  FaJs,
 } from 'react-icons/fa';
 import { FaFigma } from 'react-icons/fa6';
 import {
@@ -26,6 +27,13 @@ import {
   SiTailwindcss,
   SiFlask,
   SiGoogle,
+  SiPytorch,
+  SiNextdotjs,
+  SiFastapi,
+  SiSupabase,
+  SiPostgresql,
+  SiWebrtc,
+  SiDart,
 } from 'react-icons/si';
 import { IoAnalytics } from 'react-icons/io5';
 import skills from '@/data/skillsData.json';
@@ -82,6 +90,18 @@ const skillIcons: Record<string, JSX.Element> = {
   'Computer Vision': <FaEye className="text-3xl text-teal-400" />,
   'Self-learning': <div className="text-3xl">📚</div>,
   'Cross-domain': <div className="text-3xl">🌉</div>,
+  'PyTorch': <SiPytorch className="text-3xl text-orange-500" />,
+  'Transformers': <div className="text-3xl">🧠</div>,
+  'LangGraph': <div className="text-3xl">🕸️</div>,
+  'RAG': <div className="text-3xl">🔎</div>,
+  'Next.js': <SiNextdotjs className="text-3xl text-white" />,
+  'FastAPI': <SiFastapi className="text-3xl text-emerald-500" />,
+  'Supabase': <SiSupabase className="text-3xl text-emerald-400" />,
+  'PostgreSQL': <SiPostgresql className="text-3xl text-sky-400" />,
+  'WebRTC': <SiWebrtc className="text-3xl text-blue-300" />,
+  'Playwright': <div className="text-3xl">🎭</div>,
+  'JavaScript': <FaJs className="text-3xl text-yellow-400" />,
+  'Dart': <SiDart className="text-3xl text-cyan-500" />,
 };
 
 interface CategoryStyle {

@@ -229,5 +229,77 @@
     "symbol": "CD",
     "cat": "Soft Skills",
     "num": 38
+  },
+  {
+    "name": "PyTorch",
+    "symbol": "Pt",
+    "cat": "AI/ML",
+    "num": 39
+  },
+  {
+    "name": "Transformers",
+    "symbol": "Tr",
+    "cat": "AI/ML",
+    "num": 40
+  },
+  {
+    "name": "LangGraph",
+    "symbol": "Lg",
+    "cat": "AI/ML",
+    "num": 41
+  },
+  {
+    "name": "RAG",
+    "symbol": "RG",
+    "cat": "AI/ML",
+    "num": 42
+  },
+  {
+    "name": "Next.js",
+    "symbol": "Nx",
+    "cat": "Development",
+    "num": 43
+  },
+  {
+    "name": "FastAPI",
+    "symbol": "Fa",
+    "cat": "Development",
+    "num": 44
+  },
+  {
+    "name": "Supabase",
+    "symbol": "Sb",
+    "cat": "Development",
+    "num": 45
+  },
+  {
+    "name": "PostgreSQL",
+    "symbol": "PG",
+    "cat": "Development",
+    "num": 46
+  },
+  {
+    "name": "WebRTC",
+    "symbol": "Wr",
+    "cat": "Development",
+    "num": 47
+  },
+  {
+    "name": "Playwright",
+    "symbol": "Pw",
+    "cat": "Development",
+    "num": 48
+  },
+  {
+    "name": "JavaScript",
+    "symbol": "Js",
+    "cat": "Language",
+    "num": 49
+  },
+  {
+    "name": "Dart",
+    "symbol": "Dt",
+    "cat": "Language",
+    "num": 50
   }
 ]

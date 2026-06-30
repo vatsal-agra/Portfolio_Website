@@ -4,7 +4,13 @@ import { Github, Linkedin, Mail, ArrowDown, Sparkles } from 'lucide-react';
 import { useSmoothScroll } from '@/components/effects/SmoothScroll';
 import Magnetic from '@/components/effects/Magnetic';
 
-const roles = ['AI / ML Enthusiast', 'Problem Solver', 'Game Builder', 'Future Innovator', 'Code Craftsman'];
+const roles = [
+  'AI / ML Engineer',
+  'Full-Stack Developer',
+  'Co-Founder, AISkillBench',
+  'LLM & Agent Builder',
+  'From-Scratch Transformers',
+];
 
 const letter = {
   hidden: { y: '120%', opacity: 0 },
@@ -126,8 +132,9 @@ const Hero = () => {
           transition={{ delay: 1.05, duration: 0.6 }}
           className="mx-auto mt-6 max-w-xl text-muted-foreground text-sm md:text-base"
         >
-          Sophomore at <span className="text-foreground font-medium">VIT Chennai</span>, building intelligent &amp; playful
-          software at the intersection of <span className="text-primary font-medium">AI / ML</span>, full-stack, and game dev.
+          AI/ML engineer &amp; <span className="text-foreground font-medium">co-founder of AISkillBench</span> — I ship
+          production AI systems end-to-end, from <span className="text-primary font-medium">transformers built from scratch</span>{' '}
+          to autonomous multi-agent platforms.
         </motion.p>
 
         {/* CTAs */}
@@ -165,7 +172,7 @@ const Hero = () => {
         >
           {[
             { Icon: Github, href: 'https://github.com/vatsal-agra', label: 'GitHub' },
-            { Icon: Linkedin, href: 'https://www.linkedin.com/in/vatsal-agrawal-a7a9641b0', label: 'LinkedIn' },
+            { Icon: Linkedin, href: 'https://www.linkedin.com/in/vatsal2006', label: 'LinkedIn' },
             { Icon: Mail, href: 'https://mail.google.com/mail/?view=cm&fs=1&to=agrawal.vatsal@gmail.com', label: 'Email' },
           ].map(({ Icon, href, label }) => (
             <a

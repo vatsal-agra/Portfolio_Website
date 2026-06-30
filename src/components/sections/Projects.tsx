@@ -1,10 +1,19 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { motion, useMotionValue } from 'framer-motion';
-import { Github, ArrowUpRight, Plus, Minus } from 'lucide-react';
+import { Github, ArrowUpRight } from 'lucide-react';
 import SectionHeading from '@/components/effects/SectionHeading';
 import Reveal from '@/components/effects/Reveal';
 import { useGameLauncher } from '@/components/games/GameLauncher';
-import { projects, featuredProjects, getProjectImage, type Project } from '@/data/projects';
+import { featuredProjects, getProjectImage, type Project } from '@/data/projects';
+
+// Branded gradient covers for projects that don't ship a screenshot thumbnail.
+const COVERS = [
+  'from-primary/25 via-card to-secondary/20',
+  'from-secondary/25 via-card to-[hsl(var(--neon-pink))]/15',
+  'from-accent/20 via-card to-primary/20',
+  'from-[hsl(var(--neon-pink))]/20 via-card to-secondary/20',
+  'from-primary/20 via-card to-accent/15',
+];
 
 const ProjectCard = ({
   project,
@@ -28,24 +37,34 @@ const ProjectCard = ({
           : 'w-full flex flex-col'
       }`}
     >
-      {/* Image */}
+      {/* Cover — screenshot when available, else a branded gradient */}
       <div className={`relative overflow-hidden ${variant === 'gallery' ? 'h-[52%]' : 'h-48'}`}>
-        <img
-          src={getProjectImage(project)}
-          alt={project.title}
-          loading="lazy"
-          className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
-          onError={(e) => {
-            (e.target as HTMLImageElement).src = '/placeholder.svg';
-          }}
-        />
+        {project.thumbnail ? (
+          <img
+            src={getProjectImage(project)}
+            alt={project.title}
+            loading="lazy"
+            className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+            onError={(e) => {
+              (e.target as HTMLImageElement).src = '/placeholder.svg';
+            }}
+          />
+        ) : (
+          <div className={`relative flex h-full w-full items-center justify-center bg-gradient-to-br ${COVERS[index % COVERS.length]}`}>
+            <div className="absolute inset-0 dot-grid opacity-30" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_25%,hsl(var(--primary)/0.22),transparent_60%)]" />
+            <div className="relative z-10 flex h-20 w-20 items-center justify-center rounded-2xl border border-white/15 bg-white/5 backdrop-blur transition-transform duration-500 group-hover:scale-110">
+              <Icon className="h-9 w-9 text-white" />
+            </div>
+          </div>
+        )}
         <div className="absolute inset-0 bg-gradient-to-t from-card via-card/20 to-transparent" />
         <span className="absolute left-4 top-3 font-mono text-5xl font-bold text-white/15 mix-blend-overlay select-none">
           {num}
         </span>
-        {project.featured && (
-          <span className="absolute right-4 top-4 rounded-full bg-primary/90 px-2.5 py-1 text-[9px] font-bold uppercase tracking-widest text-black">
-            Featured
+        {(project.tag || project.featured) && (
+          <span className="absolute right-4 top-4 whitespace-nowrap rounded-full bg-primary/90 px-2.5 py-1 text-[9px] font-bold uppercase tracking-widest text-black">
+            {project.tag || 'Featured'}
           </span>
         )}
         {project.gameKey && (
@@ -87,7 +106,6 @@ const Projects = () => {
   const trackRef = useRef<HTMLDivElement>(null);
   const [distance, setDistance] = useState(0);
   const [isDesktop, setIsDesktop] = useState(false);
-  const [showAll, setShowAll] = useState(false);
   const x = useMotionValue(0);
 
   useEffect(() => {
@@ -162,7 +180,7 @@ const Projects = () => {
       <div className="container mx-auto px-6">
         <SectionHeading eyebrow="// Selected Work" title="What I've Built" highlight="Built" align="center">
           <p className="mx-auto text-center">
-            From browser-playable Python games to deployed AI SaaS — {projects.length} real projects.
+            From production AI platforms to browser-playable games — a curated selection, with 30+ more on GitHub.
             {isDesktop ? ' Scroll to glide through the highlights.' : ' Swipe through the highlights.'}
           </p>
         </SectionHeading>
@@ -177,24 +195,25 @@ const Projects = () => {
               style={{ x }}
               className="flex h-[64vh] gap-6 pl-[max(1.5rem,calc((100vw-80rem)/2+1.5rem))] pr-24"
             >
-              {featuredProjects.map((p) => (
-                <ProjectCard key={p.repoName} project={p} index={projects.indexOf(p)} onOpen={openProject} variant="gallery" />
+              {featuredProjects.map((p, i) => (
+                <ProjectCard key={p.repoName} project={p} index={i} onOpen={openProject} variant="gallery" />
               ))}
-              {/* End card → reveal full grid */}
+              {/* End card → GitHub */}
               <div className="flex h-full w-[40vw] lg:w-[26vw] shrink-0 items-center justify-center">
-                <button
-                  onClick={() => {
-                    setShowAll(true);
-                    setTimeout(() => document.getElementById('all-projects')?.scrollIntoView({ behavior: 'smooth' }), 60);
-                  }}
+                <a
+                  href="https://github.com/vatsal-agra"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="group flex flex-col items-center gap-4 rounded-3xl border border-dashed border-white/15 px-10 py-14 transition-all hover:border-primary/50"
                 >
                   <span className="flex h-16 w-16 items-center justify-center rounded-full bg-white/5 transition-colors group-hover:bg-primary/15">
-                    <Plus className="h-8 w-8 text-muted-foreground group-hover:text-primary" />
+                    <Github className="h-8 w-8 text-muted-foreground group-hover:text-primary" />
                   </span>
-                  <span className="text-lg font-bold group-hover:text-primary">See all {projects.length}</span>
-                  <span className="max-w-[12rem] text-center text-sm text-muted-foreground">Explore the complete portfolio</span>
-                </button>
+                  <span className="text-lg font-bold group-hover:text-primary">30+ more on GitHub</span>
+                  <span className="max-w-[12rem] text-center text-sm text-muted-foreground">
+                    The full archive — web, mobile, AI &amp; automation.
+                  </span>
+                </a>
               </div>
             </motion.div>
           </div>
@@ -202,48 +221,15 @@ const Projects = () => {
       ) : (
         // Mobile / tablet: native horizontal swipe carousel (side padding lets edge cards center)
         <div className="mt-12 flex snap-x snap-mandatory gap-5 overflow-x-auto px-[9vw] pb-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-          {featuredProjects.map((p) => (
+          {featuredProjects.map((p, i) => (
             <div key={p.repoName} className="h-[58vh] min-h-[440px] snap-center">
-              <ProjectCard project={p} index={projects.indexOf(p)} onOpen={openProject} variant="gallery" />
+              <ProjectCard project={p} index={i} onOpen={openProject} variant="gallery" />
             </div>
           ))}
         </div>
       )}
 
-      {/* Full grid (toggle) */}
-      <div id="all-projects" className="container mx-auto px-6 pt-16">
-        {!showAll && (
-          <div className="flex justify-center">
-            <button
-              onClick={() => setShowAll(true)}
-              className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold transition-all hover:border-primary/50 hover:bg-white/10"
-            >
-              <Plus className="h-4 w-4" /> See all {projects.length} projects
-            </button>
-          </div>
-        )}
-
-        {showAll && (
-          <>
-            <div className="mb-8 flex items-center justify-between">
-              <h3 className="font-mono text-sm uppercase tracking-[0.3em] text-muted-foreground">// full archive</h3>
-              <button
-                onClick={() => setShowAll(false)}
-                className="inline-flex items-center gap-2 rounded-full border border-white/10 px-4 py-2 text-xs text-muted-foreground transition-colors hover:text-foreground"
-              >
-                <Minus className="h-3.5 w-3.5" /> Collapse
-              </button>
-            </div>
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {projects.map((p, i) => (
-                <Reveal key={p.repoName} direction="up" delay={(i % 3) * 0.05} amount={0.15}>
-                  <ProjectCard project={p} index={i} onOpen={openProject} variant="grid" />
-                </Reveal>
-              ))}
-            </div>
-          </>
-        )}
-
+      <div className="container mx-auto px-6 pt-16">
         {/* GitHub CTA */}
         <Reveal direction="up" className="mt-14 flex justify-center">
           <a
