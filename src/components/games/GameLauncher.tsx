@@ -54,7 +54,10 @@ export const GameLauncherProvider = ({ children }: { children: ReactNode }) => {
       {children}
 
       <Dialog open={open} onOpenChange={(o) => !o && close()}>
-        <DialogContent className="bg-[#0c0c12] border-zinc-800 max-w-4xl max-h-[92vh] overflow-y-auto p-0">
+        <DialogContent
+          data-lenis-prevent
+          className="bg-[#0c0c12] border-zinc-800 max-w-4xl max-h-[92vh] overflow-y-auto overscroll-contain p-0"
+        >
           {GameComp ? (
             <>
               <DialogTitle className="sr-only">{activeGame?.replace(/-/g, ' ')} — playable game</DialogTitle>
