@@ -130,15 +130,17 @@ const ProjectDetails = ({
                 <div className="w-1 h-3 bg-primary mr-2" />
                 Links
               </h4>
-              <a
-                href={project.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center px-4 py-3 bg-white text-black font-bold rounded-xl hover:bg-primary hover:text-white transition-all text-sm w-full justify-center"
-              >
-                <Github size={18} className="mr-2" />
-                View on GitHub
-              </a>
+              {project.demo && (
+                <a
+                  href={project.demo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center px-4 py-3 bg-primary text-black font-bold rounded-xl hover:bg-white transition-all text-sm w-full justify-center shadow-lg shadow-primary/20"
+                >
+                  <ExternalLink size={18} className="mr-2" />
+                  Visit Live Site
+                </a>
+              )}
               {project.gameKey && (
                 <button
                   onClick={onPlay}
@@ -148,17 +150,19 @@ const ProjectDetails = ({
                   Launch Game
                 </button>
               )}
-              {project.demo && (
-                <a
-                  href={project.demo}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center px-4 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl transition-all text-sm w-full justify-center"
-                >
-                  <ExternalLink size={18} className="mr-2" />
-                  Live Demo
-                </a>
-              )}
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`inline-flex items-center px-4 py-3 rounded-xl font-bold transition-all text-sm w-full justify-center ${
+                  project.demo
+                    ? 'border border-white/15 bg-white/5 text-white hover:bg-white/10'
+                    : 'bg-white text-black hover:bg-primary hover:text-white'
+                }`}
+              >
+                <Github size={18} className="mr-2" />
+                View on GitHub
+              </a>
             </div>
 
             <div className="space-y-3 pt-4 border-t border-zinc-800">
